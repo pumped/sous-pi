@@ -1,0 +1,29 @@
+<html>
+<head>
+  <style>
+    #temperature {
+      font-size: 30px;
+      font-family: helvetica;
+      font-weight: 200;
+    }
+  </style>
+</head>
+<body>
+<div id="temperature">
+
+</div>
+</body>
+<script>
+  function updateTemp() {
+    var myRequest = new Request('/temp');
+    fetch(myRequest).then(function(resp){
+      resp.text().then(function(val){
+        document.getElementById('temperature').innerHTML = val;
+        this.setTimeout( function(){updateTemp();},5000);
+      });
+    });
+  }
+
+  this.setTimeout( function(){updateTemp();},200);
+</script>
+</html>
