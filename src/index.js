@@ -1,13 +1,17 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
-const Sensor = require('Sensor.js');
+const Sensor = require('./Sensor.js');
+var sensor = new Sensor();
 
+sensor.connect();
 
 app.use(express.static('src/public'));
 
 app.get('/temp', function(req, res) {
-  Sensor.getReading();
+  sensor.getReading(function(temp) {
+    res.send(String(temp));
+  });
 })
 
 app.listen(3000, function() {
