@@ -22,7 +22,7 @@ loadGraph();
 setInterval(loadGraph,60000);
 
 function insertGraphPoint(point) {
-  console.log(point);
+  //console.log(point);
   var data = backChart.data.datasets[0].data;
   var len = data.length;
   var latestPoint = data[len-1].x;
@@ -31,7 +31,7 @@ function insertGraphPoint(point) {
     backChart.data.datasets[0].data.push(point);
     backChart.update();
   }
-  console.log(data);
+  //console.log(data);
 }
 
 function updateGraph(dataset) {
@@ -49,7 +49,7 @@ function updateGraph(dataset) {
     }
 
     if (deleteCount) {
-      console.log("deleting: " + deleteCount);
+      //console.log("deleting: " + deleteCount);
       data.splice(0,deleteCount);
     }
 
