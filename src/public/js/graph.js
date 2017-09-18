@@ -21,6 +21,19 @@ function loadGraph() {
 loadGraph();
 setInterval(loadGraph,60000);
 
+function insertGraphPoint(point) {
+  console.log(point);
+  var data = backChart.data.datasets[0].data;
+  var len = data.length;
+  var latestPoint = data[len-1].x;
+
+  if (point.x > latestPoint) {
+    backChart.data.datasets[0].data.push(point);
+    backChart.update();
+  }
+  console.log(data);
+}
+
 function updateGraph(dataset) {
   if (backChart) {
     var data = backChart.data.datasets[0].data;
@@ -50,7 +63,7 @@ function updateGraph(dataset) {
     //backChart.data.datasets[0].data.push(dataset[dataset.length-1])
 
     backChart.update();
-    console.log("update");
+    //console.log("update");
   } else {
     buildGraph(dataset);
     console.log("build");

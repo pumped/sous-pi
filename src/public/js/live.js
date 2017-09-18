@@ -6,6 +6,9 @@ function updateTemp() {
         val = 0;
       }
       document.getElementById('temperature').innerHTML = val;
+      if (val != 0) {
+        insertGraphPoint({x:new Date(),y:Number(val)});
+      }
       this.setTimeout( function(){updateTemp();},5000);
     });
   });
