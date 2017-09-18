@@ -38,10 +38,29 @@ function CountDownTimer(endDate, id) {
 
         //document.getElementById(id).innerHTML = days + ':' + leadingZero(hours)+ ':' + leadingZero(minutes)+ ':' + leadingZero(seconds);
 
-        document.getElementById(id).innerHTML = days + 'days ';
-        document.getElementById(id).innerHTML += hours + 'hrs ';
-        document.getElementById(id).innerHTML += minutes + 'mins ';
-        //document.getElementById(id).innerHTML += seconds + 'secs';
+        let timeString = "";
+
+        if (distance > 24 * _hour) {
+          var dString = (days<=1) ? "day " : "days ";
+          timeString = days + dString;
+        }
+
+        if (distance > 1 * _hour) {
+          var hString = (hours<=1) ? "hr " : "hrs ";
+          timeString += hours + hString;
+        }
+
+        if (distance > 1 * _minute) {
+          var mString = (minutes<=1) ? "min " : "mins ";
+          timeString += minutes + mString;
+        }
+
+        if (distance < 24 * _hour) {
+          timeString += seconds + 's';
+        }
+
+        document.getElementById(id).innerHTML = timeString;
+
     }
 
     timer = setInterval(showRemaining, 1000);
