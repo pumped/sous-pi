@@ -15,7 +15,7 @@ class Sensor {
     dsSensor.isDriverLoaded(function(err,isLoaded) {
       //verify driver is loaded without errors
       if (err || !isLoaded) {
-        console.warning("Sensor driver is: " + isLoaded);
+        console.warn("Sensor driver is: " + isLoaded);
         console.error(err);
         return false;
       }
@@ -37,6 +37,11 @@ class Sensor {
   }
 
   getReading(callback) {
+      if (this.tempProbe == null) {
+        callback(false);
+        return;
+      }
+
       var that = this;
       var d = new Date;
       if (d.getTime() - this.reading.time > this.readingCacheTime) {
