@@ -14,12 +14,28 @@ class DataStore {
         that.writeFile;
       }
     });
+
+    this.insertCount = 0;
+    this.writeCount = 16;
   }
 
   addReading(time, reading) {
     //console.log(this.data.readings);
     this.data.readings.push([time,reading]);
-    this.writeFile();
+    this.trimReadings();
+    this.insertCount++;
+    if (this.insertCount == this.writeCount) {
+      this.insertCount = 0;
+      this.writeFile();
+    }
+  }
+
+  trimReadings() {
+    let maxLength = 100;
+    if (this.data.readings.length > maxLength) {
+      let diff = this.data.readings.length - maxLength;
+      this.data.readings.splice(0,diff);
+    }
   }
 
   writeFile() {
