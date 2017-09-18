@@ -34,6 +34,25 @@ function insertGraphPoint(point) {
   //console.log(data);
 }
 
+function cleanGraphData() {
+  var data = backChart.data.datasets[0].data;
+  var i = data.length
+  var prev = 0;
+  var prevprev = 0;
+
+  console.log("clean");
+
+  while (i--) {
+    if (prevprev == prev && data[i].y == prev) {
+      data.splice(i+1,1);
+      console.log("dropped: " + i)
+    }
+
+    prevprev = prev;
+    prev = data[i].y;
+  }
+}
+
 function updateGraph(dataset) {
   if (backChart) {
     var data = backChart.data.datasets[0].data;
@@ -68,6 +87,9 @@ function updateGraph(dataset) {
     buildGraph(dataset);
     console.log("build");
   }
+
+  cleanGraphData();
+  backChart.update();
 }
 
 function buildGraph(dataset) {
