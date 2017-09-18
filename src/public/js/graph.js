@@ -128,7 +128,7 @@ function buildGraph(dataset) {
           }],
           xAxes: [{
                 type: 'time',
-                distribution: 'series'
+                distribution: 'linear'
             }]
       },
       legend: {
