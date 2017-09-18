@@ -40,12 +40,9 @@ function cleanGraphData() {
   var prev = 0;
   var prevprev = 0;
 
-  console.log("clean");
-
   while (i--) {
     if (prevprev == prev && data[i].y == prev) {
       data.splice(i+1,1);
-      console.log("dropped: " + i)
     }
 
     prevprev = prev;
